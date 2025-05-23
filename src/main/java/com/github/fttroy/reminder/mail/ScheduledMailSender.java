@@ -21,7 +21,7 @@ public class ScheduledMailSender {
     @Autowired
     private MailService emailService;
 
-    @Scheduled(cron = "0 04 00 * * *")
+    @Scheduled(cron = "0 00 21 * * *")
     public void sendScheduledEmail() throws MessagingException {
         emailService.sendSimpleMessage("troianofrancesco01@gmail.com", subject, message);
     }
