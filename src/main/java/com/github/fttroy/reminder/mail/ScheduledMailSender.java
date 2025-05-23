@@ -23,6 +23,6 @@ public class ScheduledMailSender {
 
     @Scheduled(cron = "0 00 21 * * *")
     public void sendScheduledEmail() throws MessagingException {
-        emailService.sendSimpleMessage("troianofrancesco01@gmail.com", subject, message);
+        emailService.sendSimpleMessage(receiver, subject, message);
     }
 }
