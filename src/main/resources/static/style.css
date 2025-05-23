@@ -1,0 +1,95 @@
+body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffe6f0;
+        }
+
+        header {
+            background-color: #ffb6c1;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #ffb6c1;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        main {
+          padding: 20px;
+          min-height: calc(100vh - 100px);
+        }
+
+.div{
+display:flex
+justify-content: center
+text-align: center
+}
+
+#updateHistoryBtn {
+    background-color: #d87093;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#updateHistoryBtn:hover {
+    background-color: #ffb6c1;
+}
+
+#updateHistoryBtn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(216, 112, 147, 0.5);
+}
+
+#downloadbutton {
+    background-color: #d87093;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#downloadbutton:hover {
+    background-color: #ffb6c1;
+}
+
+#downloadbutton:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(216, 112, 147, 0.5);
+}
+
+#message {
+   font-style: italic;
+   font-weight: bold;
+}
+
+table {
+      width: 50%;
+      border-collapse: collapse;
+      background-color: #ffc0cb; /* rosa */
+      margin: 20px auto;
+      font-family: Arial, sans-serif;
+}
+th, td {
+      border: 1px solid #d48cae;
+      padding: 10px;
+      text-align: center;
+}
+th {
+     background-color: #ffb6c1;
+}

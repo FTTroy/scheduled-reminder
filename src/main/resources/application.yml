@@ -1,0 +1,43 @@
+
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:Jk2fKXahXAYFU3zC@reminder.repfpxc.mongodb.net/reminder?retryWrites=true&w=majority&appName=reminder
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: springprojectservice@gmail.com
+    password: zcxrquudrhozpked
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    default-encoding: UTF-8
+
+mail:
+  info:
+    receiver: aleepintus@gmail.com
+    subject: "Pillolina Time"
+    message: |
+      <html>
+        <body>
+          <p>Ciao Amore mio,</p>
+          <p>E' ora di prendere la pillolina</p>
+          <a href="http://localhost:8080" style="
+              background-color: #4CAF50;
+              color: white;
+              padding: 10px 20px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              border-radius: 5px;">
+            Clicca per confermare di averla presa!
+          </a>
+        </body>
+      </html>
+    
+
