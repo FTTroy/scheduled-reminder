@@ -39,5 +39,5 @@ mail:
       </html>
 
 scheduled:
-  cron: ${SEND_TIME:0 30 8 * * *}
+  cron: ${SEND_TIME}
 
