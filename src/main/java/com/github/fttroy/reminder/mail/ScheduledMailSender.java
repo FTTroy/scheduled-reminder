@@ -21,7 +21,7 @@ public class ScheduledMailSender {
     @Autowired
     private MailService emailService;
 
-    @Scheduled(cron = "${scheduled.cron}")
+    @Scheduled(cron = "${scheduled.cron}", zone = "Europe/Rome")
     public void sendScheduledEmail() throws MessagingException {
         emailService.sendSimpleMessage(receiver, subject, message);
     }
