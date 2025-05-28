@@ -25,7 +25,6 @@ public class WebController {
         } else {
             model.addAttribute("confirmList", Collections.emptyList());
         }
-
         return "index";
     }
 }
