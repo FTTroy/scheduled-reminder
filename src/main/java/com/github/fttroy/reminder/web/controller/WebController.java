@@ -1,4 +1,4 @@
-package com.github.fttroy.reminder.mongo.controller.web;
+package com.github.fttroy.reminder.web.controller;
 
 
 import com.github.fttroy.reminder.mongo.document.History;

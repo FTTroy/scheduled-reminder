@@ -17,6 +17,8 @@ import java.util.Optional;
 @Service
 public class HistoryService {
 
+    private static final String ROME_ZONE_ID = "Europe/Rome";
+
     @Autowired
     private HistoryRepository repository;
 
@@ -33,17 +35,20 @@ public class HistoryService {
     }
 
     public History updateHistory(String email) {
-        LocalDateTime now = ZonedDateTime.now(ZoneId.of("Europe/Rome")).toLocalDateTime();
+        log.info("START - update history for user: {}", email);
+        LocalDateTime now = ZonedDateTime.now(ZoneId.of(ROME_ZONE_ID)).toLocalDateTime();
         Optional<History> historyOpt = Optional.ofNullable(repository.findByEmail(email));
         if (historyOpt.isPresent()) {
             History historyDb = historyOpt.get();
-            log.info("history found: {}", historyDb);
+            log.info("history for user {} found: {}", email, historyDb);
             historyDb.getConfirm().add(now);
             return repository.save(historyDb);
         } else {
+            log.info("history for user {} not found", email);
             History history = new History();
             history.setConfirm(List.of(now));
             history.setEmail(email);
+            log.info("saving new history:{}", history);
             return repository.save(new History());
         }
     }

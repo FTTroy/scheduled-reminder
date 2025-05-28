@@ -18,10 +18,13 @@ public class ScheduledMailSender {
     @Value("${mail.info.message}")
     private String message;
 
+    @Value("${scheduled.cron}")
+    private String sendTime;
+
     @Autowired
     private MailService emailService;
 
-    @Scheduled(cron = "0 00 21 * * *")
+    @Scheduled(cron = "#{@scheduledMailSender.sendTime}")
     public void sendScheduledEmail() throws MessagingException {
         emailService.sendSimpleMessage(receiver, subject, message);
     }

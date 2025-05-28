@@ -1,14 +1,12 @@
-
-
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://admin:Jk2fKXahXAYFU3zC@reminder.repfpxc.mongodb.net/reminder?retryWrites=true&w=majority&appName=reminder
+      uri: ${MONGODB_URI}
   mail:
     host: smtp.gmail.com
     port: 587
-    username: springprojectservice@gmail.com
-    password: zcxrquudrhozpked
+    username: ${SENDER_MAIL}
+    password: ${MAIL_PASSWORD}
     protocol: smtp
     properties:
       mail:
@@ -20,7 +18,7 @@ spring:
 
 mail:
   info:
-    receiver: aleepintus@gmail.com
+    receiver: ${RECEIVER_MAIL}
     subject: "Pillolina Time"
     message: |
       <html>
@@ -28,7 +26,7 @@ mail:
           <p>Ciao Amore mio,</p>
           <p>E' ora di prendere la pillolina</p>
           <a href="https://dreadful-jandy-fttroy-350ad142.koyeb.app/" style="
-              background-color: #4CAF50;
+              background-color: #FFC0CB;
               color: white;
               padding: 10px 20px;
               text-align: center;
@@ -39,5 +37,7 @@ mail:
           </a>
         </body>
       </html>
-    
+
+scheduled:
+  cron: ${SEND_TIME:0 30 8 * * *}
 
