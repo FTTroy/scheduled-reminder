@@ -22,13 +22,13 @@ public class HistoryService {
     private HistoryRepository repository;
 
     public History findHistoryByEmail(String email) {
-        return repository.findByEmail(email);
+        return repository.findByEmail(email).orElse(null);
     }
 
     public History updateHistory(String email) {
         log.info("START - update history for user: {}", email);
         LocalDateTime now = ZonedDateTime.now(ZoneId.of(ROME_ZONE_ID)).toLocalDateTime();
-        Optional<History> historyOpt = Optional.ofNullable(repository.findByEmail(email));
+        Optional<History> historyOpt = repository.findByEmail(email);
         if (historyOpt.isPresent()) {
             History historyDb = historyOpt.get();
             log.info("history for user {} found: {}", email, historyDb);

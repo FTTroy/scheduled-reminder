@@ -4,6 +4,8 @@ import com.github.fttroy.reminder.mongo.document.History;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.Optional;
+
 public interface HistoryRepository extends MongoRepository<History, ObjectId> {
-    History findByEmail(String email);
+    Optional<History> findByEmail(String email);
 }
