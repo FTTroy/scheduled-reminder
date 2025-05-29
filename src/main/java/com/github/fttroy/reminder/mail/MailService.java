@@ -43,7 +43,7 @@ public class MailService {
             helper.setTo(receiver);
             helper.setSubject(subject);
             helper.setText(text, true);
-            log.info("sending mail:{}", message);
+            log.info("sending mail:\n sender:{}\n receiver:{}\n subject:{}\n text:{}", sender, receiver, subject, text);
             mailSender.send(message);
             log.info("END - sending mail");
         }
