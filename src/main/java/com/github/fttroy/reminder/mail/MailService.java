@@ -26,9 +26,9 @@ public class MailService {
     @Autowired
     private HistoryService historyService;
 
-    public void sendSimpleMessage(String to, String subject, String text) throws MessagingException {
-        log.info("START - sending email to {}", subject);
-        History history = historyService.findHistoryByEmail(subject);
+    public void sendSimpleMessage(String receiver, String subject, String text) throws MessagingException {
+        log.info("START - sending email to {}", receiver);
+        History history = historyService.findHistoryByEmail(receiver);
         boolean isConfirmedToday = false;
         if (history != null && !history.getConfirm().isEmpty()) {
             isConfirmedToday = history.getConfirm().stream().anyMatch(
@@ -40,7 +40,7 @@ public class MailService {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setFrom(sender);
-            helper.setTo(to);
+            helper.setTo(receiver);
             helper.setSubject(subject);
             helper.setText(text, true);
             log.info("sending mail:{}", message);
