@@ -10,24 +10,39 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
 @Service
 public class HistoryService {
 
-    private static final String ROME_ZONE_ID = "Europe/Rome";
+    private static final ZoneId LOCAL_ZONE = ZoneId.of("Europe/Rome");
+    private static final ZoneId UTC_ZONE = ZoneId.of("UTC");
 
     @Autowired
     private HistoryRepository repository;
 
     public History findHistoryByEmail(String email) {
-        return repository.findByEmail(email).orElse(null);
+        Optional<History> historyOpt = repository.findByEmail(email);
+        if (historyOpt.isPresent()) {
+            History history = historyOpt.get();
+            List<LocalDateTime> confirms = history.getConfirm().stream()
+                    .map(ldt -> ldt.atZone(LOCAL_ZONE)
+                            .withZoneSameInstant(UTC_ZONE)
+                            .toLocalDateTime())
+                    .sorted(Comparator.reverseOrder())
+                    .toList();
+            history.setConfirm(confirms);
+            return history;
+        }
+        return null;
     }
 
     public History updateHistory(String email) {
         log.info("START - update history for user: {}", email);
-        LocalDateTime now = ZonedDateTime.now(ZoneId.of(ROME_ZONE_ID)).toLocalDateTime();
+        LocalDateTime now = ZonedDateTime.now(LOCAL_ZONE).toLocalDateTime();
         Optional<History> historyOpt = repository.findByEmail(email);
         if (historyOpt.isPresent()) {
             History historyDb = historyOpt.get();
