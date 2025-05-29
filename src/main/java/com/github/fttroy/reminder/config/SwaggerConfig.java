@@ -3,28 +3,26 @@ package com.github.fttroy.reminder.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 public class SwaggerConfig {
-
     @Bean
-    public WebMvcConfigurer swaggerCorsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                // Permetti CORS solo sulle rotte di Swagger/OpenAPI
-                registry.addMapping("/v3/api-docs/**")
-                        .allowedOrigins("*") // o specifica i domini ammessi
-                        .allowedMethods("GET", "POST", "OPTIONS")
-                        .allowedHeaders("*");
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("*")); // oppure specifica l'origine
+        configuration.setAllowedMethods(List.of("GET", "POST", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
 
-                registry.addMapping("/swagger-ui/**")
-                        .allowedOrigins("*")
-                        .allowedMethods("GET", "OPTIONS")
-                        .allowedHeaders("*");
-            }
-        };
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/v3/api-docs/**", configuration);
+        source.registerCorsConfiguration("/swagger-ui/**", configuration);
+        source.registerCorsConfiguration("/swagger-ui.html", configuration);
+        source.registerCorsConfiguration("/v3/api-docs.yaml", configuration);
+        return source;
     }
 }
