@@ -28,13 +28,11 @@ public class HistoryService {
         Optional<History> historyOpt = repository.findByEmail(email);
         if (historyOpt.isPresent()) {
             History history = historyOpt.get();
-            List<LocalDateTime> confirms = history.getConfirm().stream()
-                    .map(ldt -> ldt.atZone(LOCAL_ZONE)
-                            .withZoneSameInstant(UTC_ZONE)
-                            .toLocalDateTime())
+            List<LocalDateTime> sortedConfirms = history.getConfirm()
+                    .stream()
                     .sorted(Comparator.reverseOrder())
                     .toList();
-            history.setConfirm(confirms);
+            history.setConfirm(sortedConfirms);
             return history;
         }
         return null;

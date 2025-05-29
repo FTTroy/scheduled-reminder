@@ -16,8 +16,9 @@ header {
 }
 
 main {
-    flex: 1; /* Occupa lo spazio disponibile tra header e footer */
+    flex: 1; /* Occupa tutto lo spazio disponibile tra header e footer */
     padding: 20px;
+    padding-bottom: 80px; /* Spazio extra per evitare che il footer copra contenuti */
 }
 
 footer {
@@ -25,6 +26,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
+    /* footer ora è nel flusso normale, NON fisso */
 }
 
 /* Pulsanti */
@@ -38,6 +40,8 @@ footer {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: auto;
+    max-width: 100%;
 }
 
 #updateHistoryBtn:hover,
@@ -59,7 +63,8 @@ footer {
 
 /* Tabella */
 table {
-    width: 50%;
+    width: 95%;
+    max-width: 600px;
     border-collapse: collapse;
     background-color: #ffc0cb;
     margin: 20px auto;
@@ -81,4 +86,23 @@ th {
     display: flex;
     justify-content: center;
     text-align: center;
+}
+
+/* Responsive per schermi piccoli */
+@media (max-width: 600px) {
+    table {
+        font-size: 14px;
+    }
+
+    #updateHistoryBtn,
+    #downloadbutton {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    main {
+        padding: 15px;
+        padding-bottom: 100px; /* extra su mobile */
+    }
 }
