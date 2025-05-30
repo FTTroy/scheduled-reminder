@@ -35,7 +35,7 @@ public class MailService {
                     confirm -> LocalDate.now().equals(confirm.toLocalDate())
             );
         }
-        log.info("confirmed today:{}", isConfirmedToday);
+        log.info("confirmed today: {}", isConfirmedToday);
         if (!isConfirmedToday) {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -45,7 +45,7 @@ public class MailService {
             helper.setText(text, true);
             log.info("sending mail:\n sender:{}\n receiver:{}\n subject:{}\n text:{}", sender, receiver, subject, text);
             mailSender.send(message);
-            log.info("END - sending mail");
         }
+        log.info("END - sending mail");
     }
 }
