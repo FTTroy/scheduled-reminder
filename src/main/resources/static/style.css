@@ -31,6 +31,10 @@ footer {
     padding: 10px;
 }
 
+#tableDiv{
+    padding-bottom: 50px;
+}
+
 /* Pulsanti */
 #updateHistoryBtn,
 #downloadbutton {
